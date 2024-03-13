@@ -89,6 +89,16 @@ impl Protontweaks {
         self.try_apps().await.unwrap()
     }
 
+    pub async fn try_app_ids(&self) -> Result<Vec<String>, String> {
+        self.try_apps()
+            .await
+            .map(|apps| apps.iter().map(|app| app.id.clone()).collect())
+    }
+
+    pub async fn app_ids(&self) -> Vec<String> {
+        self.try_app_ids().await.unwrap()
+    }
+
     pub async fn try_app(&self, app_id: &str) -> Result<App, String> {
         self.get::<App>(&format!("{app_id}.json")).await
     }
@@ -125,6 +135,17 @@ mod tests {
             "Should be a list of apps"
         );
         assert!(api.apps().await.len() > 0, "Should be a list of apps");
+    }
+
+    #[tokio::test]
+    async fn app_ids() {
+        let api = Protontweaks::new();
+
+        assert!(
+            api.try_app_ids().await.unwrap().len() > 0,
+            "Should be a list of app ids"
+        );
+        assert!(api.app_ids().await.len() > 0, "Should be a list of app ids");
     }
 
     #[tokio::test]
