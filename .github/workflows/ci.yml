@@ -50,3 +50,8 @@ jobs:
         with:
           flag-name: run-${{ join(matrix.*, '-') }}
           parallel: true
+
+      - run: cargo publish --token ${CRATES_TOKEN}
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          CRATES_TOKEN: ${{ secrets.CRATES_TOKEN }}

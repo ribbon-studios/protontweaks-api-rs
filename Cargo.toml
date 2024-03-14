@@ -1,5 +1,10 @@
 [package]
 name = "protontweaks-api"
+description = "api for interacting with https://api.protontweaks.com"
+homepage = "https://protontweaks.com"
+repository = "https://github.com/rain-cafe/protontweaks-api-rs"
+documentation = "https://docs.rs/protontweaks-api/"
+license-file = "LICENSE"
 version = "0.1.0"
 edition = "2021"
 

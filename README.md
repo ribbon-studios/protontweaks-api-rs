@@ -1,3 +1,5 @@
+[![Crates.io][crates-image]][crates-url] [![docs.rs][docsrs-image]][docsrs-url]
+
 [![Coveralls][coveralls-image]][coveralls-url] [![CI Build][github-actions-image]][github-actions-url]
 
 ## protontweaks-api-rs
@@ -10,3 +12,7 @@ Rust api for interacting with https://api.protontweaks.com
 [coveralls-url]: https://coveralls.io/github/rain-cafe/protontweaks-api-rs?branch=main
 [maintainability-image]: https://img.shields.io/codeclimate/maintainability/rain-cafe/protontweaks-api-rs
 [maintainability-url]: https://codeclimate.com/github/rain-cafe/protontweaks-api-rs/maintainability
+[crates-image]: https://img.shields.io/crates/v/protontweaks-api.svg
+[crates-url]: https://crates.io/crates/protontweaks-api
+[docsrs-image]: https://docs.rs/protontweaks-api/badge.svg
+[docsrs-url]: https://docs.rs/protontweaks-api/

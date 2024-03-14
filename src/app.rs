@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use serde::Deserialize;
 
-use crate::system::{System, SystemTweaks, GPU};
+use crate::system::{System, SystemTweaks};
 
 #[derive(PartialEq, Debug, Deserialize)]
 pub struct TweakSettings {

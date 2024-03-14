@@ -43,8 +43,7 @@ impl GpuDriver {
 
         let adapter = instance
             .request_adapter(&wgpu::RequestAdapterOptions::default())
-            .await
-            .unwrap();
+            .await?;
 
         match adapter.get_info().driver.as_ref() {
             "NVIDIA" => Some(GPU::NVIDIA),
