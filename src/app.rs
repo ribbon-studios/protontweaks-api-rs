@@ -42,34 +42,13 @@ impl Clone for TweakSettings {
 }
 
 impl App {
-    async fn get_gpu_info(&self) -> Option<GPU> {
-        let instance = wgpu::Instance::default();
-
-        let adapter = instance
-            .request_adapter(&wgpu::RequestAdapterOptions::default())
-            .await
-            .unwrap();
-
-        match adapter.get_info().driver.as_ref() {
-            "NVIDIA" => Some(GPU::NVIDIA),
-            // TODO: Need someone with an AMD GPU to verify this is correct
-            "AMD" => Some(GPU::AMD),
-            _ => None,
-        }
-    }
-
     /// Utilizes system info to flatten out the App into a collection of applicable tweaks
     pub async fn flatten(&self) -> SystemTweaks {
         let mut env = self.tweaks.env.clone();
         let mut tricks = self.tweaks.tricks.clone();
         let mut settings = self.tweaks.settings.clone();
 
-        if let Some(gpu_tweaks) = self
-            .tweaks
-            .system
-            .gpu_driver
-            .get_tweaks(self.get_gpu_info().await)
-        {
+        if let Some(gpu_tweaks) = self.tweaks.system.gpu_driver.get_tweaks().await {
             // gpu-level settings overwrite global settings
             env.extend(gpu_tweaks.env.clone());
             tricks.extend(gpu_tweaks.tricks.clone());
