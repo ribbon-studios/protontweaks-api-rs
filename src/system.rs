@@ -20,6 +20,7 @@ pub struct GpuDriver {
 pub struct SystemTweaks {
     pub tricks: Vec<String>,
     pub env: HashMap<String, String>,
+    pub args: Vec<String>,
     pub settings: TweakSettings,
 }
 
@@ -79,6 +80,7 @@ mod tests {
             nvidia: Some(SystemTweaks {
                 env: HashMap::new(),
                 tricks: vec![],
+                args: vec![],
                 settings: TweakSettings {
                     gamemode: None,
                     mangohud: None,

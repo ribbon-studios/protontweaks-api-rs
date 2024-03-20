@@ -20,6 +20,7 @@ pub struct Issue {
 pub struct Tweaks {
     pub tricks: Vec<String>,
     pub env: HashMap<String, String>,
+    pub args: Vec<String>,
     pub settings: TweakSettings,
     pub system: System,
 }
@@ -46,12 +47,14 @@ impl App {
     pub async fn flatten(&self) -> SystemTweaks {
         let mut env = self.tweaks.env.clone();
         let mut tricks = self.tweaks.tricks.clone();
+        let mut args = self.tweaks.args.clone();
         let mut settings = self.tweaks.settings.clone();
 
         if let Some(gpu_tweaks) = self.tweaks.system.gpu_driver.get_tweaks().await {
             // gpu-level settings overwrite global settings
             env.extend(gpu_tweaks.env.clone());
             tricks.extend(gpu_tweaks.tricks.clone());
+            args.extend(gpu_tweaks.args.clone());
 
             if let Some(gamemode) = gpu_tweaks.settings.gamemode {
                 settings.gamemode = Some(gamemode);
@@ -64,6 +67,7 @@ impl App {
 
         SystemTweaks {
             env,
+            args,
             tricks,
             settings,
         }
