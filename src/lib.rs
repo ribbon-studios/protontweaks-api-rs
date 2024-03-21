@@ -7,7 +7,7 @@ pub mod app;
 pub mod system;
 
 pub struct Protontweaks {
-    url: String,
+    url: &'static str,
 }
 
 #[derive(Debug, Deserialize)]
@@ -23,24 +23,15 @@ pub struct MicroApp {
     pub name: String,
 }
 
-impl Default for Protontweaks {
-    fn default() -> Self {
-        Self {
-            url: "https://api.protontweaks.com/v4".to_string(),
-        }
-    }
-}
-
 impl Protontweaks {
-    pub fn new() -> Self {
-        Self::default()
+    pub const fn new() -> Self {
+        Self {
+            url: "https://api.protontweaks.com/v4",
+        }
     }
 
-    pub fn new_with_url(url: &str) -> Self {
-        Self {
-            url: url.to_string(),
-            ..Self::default()
-        }
+    pub const fn new_with_url(url: &'static str) -> Self {
+        Self { url: url }
     }
 
     pub fn to_url(&self, endpoint: &str) -> Url {

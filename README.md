@@ -6,6 +6,18 @@
 
 Rust api for interacting with https://api.protontweaks.com
 
+### Usage
+
+```rs
+// ...
+
+const api = Protontweaks::new();
+
+async fn my_code() {
+    let apps = api.apps().await;
+}
+```
+
 [github-actions-image]: https://img.shields.io/github/actions/workflow/status/rain-cafe/protontweaks-api-rs/ci.yml?event=push
 [github-actions-url]: https://github.com/rain-cafe/protontweaks-api-rs/actions/workflows/ci.yml?query=branch%3Amain
 [coverage-image]: https://img.shields.io/codecov/c/github/rain-cafe/protontweaks-api-rs
