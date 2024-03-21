@@ -13,8 +13,16 @@ Rust api for interacting with https://api.protontweaks.com
 
 const api = Protontweaks::new();
 
-async fn my_code() {
-    let apps = api.apps().await;
+async fn my_code() -> Result<(), String> {
+    let apps: Vec<MicroApp> = api.try_apps().await?;
+    let apps: Vec<MicroApp> = api.apps().await;
+
+    let app: App = api.try_app("644930").await?;
+    let app: App = api.app("644930").await;
+
+    let system_tweaks: SystemTweaks = app.flatten(); // This detects the local gpu and merges gpu-specific tweaks into the top level tweaks
+
+    Ok(())
 }
 ```
 
