@@ -13,7 +13,7 @@ pub struct TweakSettings {
 #[derive(Debug, Deserialize)]
 pub struct Issue {
     pub description: String,
-    pub solution: String,
+    pub solution: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
