@@ -2,7 +2,7 @@
 name = "protontweaks-api"
 description = "api for interacting with https://api.protontweaks.com"
 homepage = "https://protontweaks.com"
-repository = "https://github.com/rain-cafe/protontweaks-api-rs"
+repository = "https://github.com/ribbon-studios/protontweaks-api-rs"
 documentation = "https://docs.rs/protontweaks-api/"
 license-file = "LICENSE"
 version = "0.3.1"
