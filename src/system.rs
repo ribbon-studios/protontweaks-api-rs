@@ -38,20 +38,34 @@ impl GPU {
     }
 }
 
-impl GpuDriver {
-    async fn get_gpu_info(&self) -> Option<GPU> {
-        let instance = wgpu::Instance::default();
+pub struct SystemInfo {
+    pub driver: String,
+    pub driver_type: Option<GPU>,
+}
 
-        let adapter = instance
-            .request_adapter(&wgpu::RequestAdapterOptions::default())
-            .await?;
+pub async fn get_system_info() -> Option<SystemInfo> {
+    let instance = wgpu::Instance::default();
 
-        match adapter.get_info().driver.as_ref() {
+    let adapter = instance
+        .request_adapter(&wgpu::RequestAdapterOptions::default())
+        .await?;
+
+    Some(SystemInfo {
+        driver: adapter.get_info().driver,
+        driver_type: match adapter.get_info().driver.as_ref() {
             "NVIDIA" => Some(GPU::NVIDIA),
             // TODO: Need someone with an AMD GPU to verify this is correct
             "AMD" => Some(GPU::AMD),
             _ => None,
-        }
+        },
+    })
+}
+
+impl GpuDriver {
+    async fn get_gpu_info(&self) -> Option<GPU> {
+        let system_info = get_system_info().await?;
+
+        system_info.driver_type
     }
 
     pub async fn get_tweaks(&self) -> &Option<SystemTweaks> {
