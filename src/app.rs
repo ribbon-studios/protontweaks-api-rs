@@ -1,22 +1,22 @@
 use std::collections::HashMap;
 
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 use crate::system::{System, SystemTweaks};
 
-#[derive(PartialEq, Debug, Deserialize)]
+#[derive(PartialEq, Debug, Deserialize, Serialize)]
 pub struct TweakSettings {
     pub gamemode: Option<bool>,
     pub mangohud: Option<bool>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Issue {
     pub description: String,
     pub solution: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Tweaks {
     pub tricks: Vec<String>,
     pub env: HashMap<String, String>,
@@ -25,7 +25,7 @@ pub struct Tweaks {
     pub system: System,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct App {
     pub id: String,
     pub name: String,

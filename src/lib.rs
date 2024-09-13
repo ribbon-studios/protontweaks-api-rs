@@ -1,7 +1,7 @@
 use app::App;
 use log::trace;
 use reqwest::{StatusCode, Url};
-use serde::{de::DeserializeOwned, Deserialize};
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
 
 pub mod app;
 pub mod system;
@@ -10,14 +10,14 @@ pub struct Protontweaks {
     url: &'static str,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct AppsList {
     pub sha: String,
     pub short_sha: String,
     pub apps: Vec<MicroApp>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct MicroApp {
     pub id: String,
     pub name: String,

@@ -1,22 +1,22 @@
 use std::collections::HashMap;
 
 use log::info;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 use crate::app::TweakSettings;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct System {
     pub gpu_driver: GpuDriver,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct GpuDriver {
     pub amd: Option<SystemTweaks>,
     pub nvidia: Option<SystemTweaks>,
 }
 
-#[derive(PartialEq, Debug, Deserialize)]
+#[derive(PartialEq, Debug, Deserialize, Serialize)]
 pub struct SystemTweaks {
     pub tricks: Vec<String>,
     pub env: HashMap<String, String>,
